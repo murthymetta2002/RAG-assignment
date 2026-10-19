@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+﻿\documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{booktabs}
 \usepackage{array}
@@ -13,7 +13,7 @@
 \maketitle
 
 \section*{Setup}
-Document: Gloomhaven rulebook (74 pages, scanned; text obtained with local OCR), split into 183 chunks of about 200 words with 40 words of overlap. Bi-encoder: \texttt{all-MiniLM-L6-v2} with cosine similarity over a NumPy matrix. Cross-encoder: \texttt{cross-encoder/ms-marco-MiniLM-L-6-v2}. LLM: \texttt{gemini-3.5-flash-lite}, temperature 0, identical prompt for both pipelines. Code: \url{https://github.com/<your-username>/RAG-assignment}.
+Document: Gloomhaven rulebook (74 pages, scanned; text obtained with local OCR), split into 183 chunks of about 200 words with 40 words of overlap. Bi-encoder: \texttt{all-MiniLM-L6-v2} with cosine similarity over a NumPy matrix. Cross-encoder: \texttt{cross-encoder/ms-marco-MiniLM-L-6-v2}. LLM: \texttt{gemini-3.5-flash-lite}, temperature 0, identical prompt for both pipelines. Code: \url{https://github.com/murthymetta2002/RAG-assignment}.
 
 \section{Architecture Comparison}
 A bi-encoder encodes the query and each chunk separately into one vector each, and relevance is the cosine similarity between the two vectors. Chunk vectors can be computed once and stored, so search is fast, but each vector has to summarise the whole chunk without knowing the query. A cross-encoder takes the query and the chunk together as a single input, so self-attention can compare every query token with every chunk token, and it outputs a relevance score directly. This catches things like negation and ``except when'' wording that a single averaged vector blurs, but nothing can be precomputed.
