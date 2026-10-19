@@ -1,0 +1,8 @@
+pymupdf
+rapidocr-onnxruntime
+sentence-transformers
+numpy
+pandas
+google-genai
+jinja2
+ipykernel
