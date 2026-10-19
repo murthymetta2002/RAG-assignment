@@ -6,3 +6,5 @@ pandas
 google-genai
 jinja2
 ipykernel
+nbconvert
+nbformat

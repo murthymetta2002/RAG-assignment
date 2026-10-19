@@ -68,9 +68,9 @@ Mean over 8 queries with 5 repeats each, after a warm-up run, on a CPU-only lapt
 \toprule
 Stage & Mean (ms) & Std (ms) \\
 \midrule
-Baseline retrieval (embed query + top-10) & 16.2 & 2.9 \\
-Cross-encoder re-rank (10 pairs) & 568.3 & 143.9 \\
-Total for pipeline 2 & 584.5 & -- \\
+Baseline retrieval (embed query + top-10) & 15.7 & 2.2 \\
+Cross-encoder re-rank (10 pairs) & 557.9 & 195.7 \\
+Total for pipeline 2 & 573.6 & -- \\
 \bottomrule
 \end{tabular}
 \caption{Retrieval latency per query.}
@@ -79,6 +79,6 @@ Total for pipeline 2 & 584.5 & -- \\
 Re-ranking adds roughly 35 times the baseline retrieval time for these 10 candidates.
 
 \section{Scaling Question}
-A cross-encoder needs a full forward pass for every (query, chunk) pair and nothing can be cached, because the score depends on the query. Running it on a whole collection of $N$ chunks would cost $N$ forward passes per query, whereas a bi-encoder needs one forward pass for the query and a fast vector search over precomputed embeddings. Here $N=183$ and 10 pairs already cost about 570\,ms, so for a collection with millions of chunks the cross-encoder alone would be far too slow. That is why we use the bi-encoder to cut the collection down to a small candidate set first and only re-rank those.
+A cross-encoder needs a full forward pass for every (query, chunk) pair and nothing can be cached, because the score depends on the query. Running it on a whole collection of $N$ chunks would cost $N$ forward passes per query, whereas a bi-encoder needs one forward pass for the query and a fast vector search over precomputed embeddings. Here $N=183$ and 10 pairs already cost about 560\,ms, so for a collection with millions of chunks the cross-encoder alone would be far too slow. That is why we use the bi-encoder to cut the collection down to a small candidate set first and only re-rank those.
 
 \end{document}
