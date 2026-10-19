@@ -24,7 +24,20 @@ Gold chunks were identified by a phrase from the rulebook that contains the true
 \begin{table}[H]
 \centering
 \small
-\input{rank_table.tex}
+\begin{tabular}{lp{6cm}lcc}
+\toprule
+Category & Query & Gold chunk & Rank before & Rank after \\
+\midrule
+keyword trap & Which status makes a figure lose one life at the start of its turn? & C062, C063 & 6 & 1 \\
+buried & Which positive effects can a poisoned monster still receive? & C063 & 6 & 2 \\
+exception & Must the party always go to Gloomhaven after a scenario? & C133 & 5 & 2 \\
+exception & What happens to retaliate if the retaliating figure is killed? & C069 & 5 & 1 \\
+negation & Can loot left on the map be collected after the scenario ends? & C117 & 5 & 1 \\
+negation & Can the party lose more reputation than they have? & C119 & 7 & 4 \\
+control & Can a figure stand inside a wall line? & C029 & 1 & 4 \\
+control & Is a road event drawn when the scenario is in casual mode? & C021 & 2 & 4 \\
+\bottomrule
+\end{tabular}
 \caption{Rank of the gold chunk before and after re-ranking.}
 \end{table}
 
@@ -51,7 +64,15 @@ Mean over 8 queries with 5 repeats each, after a warm-up run, on a CPU-only lapt
 
 \begin{table}[H]
 \centering
-\input{latency_table.tex}
+\begin{tabular}{lrr}
+\toprule
+Stage & Mean (ms) & Std (ms) \\
+\midrule
+Baseline retrieval (embed query + top-10) & 16.2 & 2.9 \\
+Cross-encoder re-rank (10 pairs) & 568.3 & 143.9 \\
+Total for pipeline 2 & 584.5 & -- \\
+\bottomrule
+\end{tabular}
 \caption{Retrieval latency per query.}
 \end{table}
 
